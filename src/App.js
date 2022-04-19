@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import { signup } from './firebaseConfig';
+import { useRef } from 'react';
+import './index.css';
 
 function App() {
+  const emailRef = useRef()
+  const passwordRef = useRef()
+
+  // call to firebase api
+  async function handleSignup() {
+    await signup(email, password)
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+      <div className='fields'>
+        <input ref={emailRef} placeholder='email' />
+        <input ref={passwordRef} type='password' placeholder='Password' />
+      </div>
+
+      <button onClick={handleSignup}>Sign Up</button>
     </div>
   );
 }
